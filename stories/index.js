@@ -4,6 +4,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import NewsForm from '../src/components/newsForm/';
 import NewsItem from '../src/components/newsItem';
 import NewsList from '../src/components/newsList';
+import { action } from "@storybook/addon-actions";
 
 const post = {
     id: 1 ,
@@ -16,11 +17,9 @@ const post = {
 
 storiesOf("Hacker App/News Form", module).add("default", () => <NewsForm />);
 
-storiesOf('Hacker App/News Item', module)
-    .add('default', () => <NewsItem post= { post }  />
-    )
-    .add('No hyperlink', () => <NewsItem post= { { ...post, link: ''} }  />
-    )
+storiesOf("Hacker App/News Item", module)
+    .add("default", () => <NewsItem post={post} upvoteHandler={action("upvoted")} /> )
+    .add("No hyperlink", () => <NewsItem post={{ ...post, link: "" }} upvoteHandler={action("upvoted")}/>);
 
 storiesOf('Hacker App/News List', module)
     .add('default', () => {
